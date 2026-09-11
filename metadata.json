@@ -1,0 +1,6 @@
+{
+  "name": "ShopLuxe - Affiliate & E-Commerce Store",
+  "description": "Modern and responsive affiliate marketing and direct e-commerce store with product comparison, reviews, blog articles, and user authentication.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,56 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Public products catalogue (seeded / user submitted)
+    match /products/{productId} {
+      allow read: if true;
+      allow create: if isAuthenticated();
+      allow update, delete: if isAuthenticated() && (resource.data.creatorId == request.auth.uid || !('creatorId' in resource.data));
+    }
+
+    // User data: cart, wishlist, profile, comparisons
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+
+      match /cart/{cartItemId} {
+        allow read, write: if isOwner(userId);
+      }
+      match /wishlist/{wishId} {
+        allow read, write: if isOwner(userId);
+      }
+      match /comparisons/{compareId} {
+        allow read, write: if isOwner(userId);
+      }
+      match /orders/{orderId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+
+    // Reviews
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if isAuthenticated();
+      allow update, delete: if isAuthenticated() && resource.data.userId == request.auth.uid;
+    }
+
+    // Newsletter Subscribers
+    match /subscribers/{subscriberId} {
+      allow create: if true;
+      allow read: if false;
+    }
+
+    // Blog articles
+    match /articles/{articleId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+  }
+}
