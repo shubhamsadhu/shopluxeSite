@@ -6,7 +6,6 @@ import {
   Mail,
   MapPin,
   Instagram,
-  Twitter,
   Pin,
   ShieldCheck,
   CreditCard
@@ -67,14 +66,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAbout, onOpenContact }) =>
                 aria-label="Instagram"
               >
                 <Instagram className="w-4 h-4" />
-              </a>
-              <a
-                href="#twitter"
-                onClick={(e) => e.preventDefault()}
-                className="w-8 h-8 rounded-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white flex items-center justify-center transition-colors"
-                aria-label="Twitter / X"
-              >
-                <Twitter className="w-4 h-4" />
               </a>
               <a
                 href="#pinterest"
