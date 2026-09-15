@@ -5,7 +5,6 @@ import {
   Phone,
   Mail,
   MapPin,
-  Facebook,
   Instagram,
   Twitter,
   Pin,
@@ -61,14 +60,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAbout, onOpenContact }) =>
 
             {/* Social Icons */}
             <div className="flex items-center gap-3 pt-2">
-              <a
-                href="#facebook"
-                onClick={(e) => e.preventDefault()}
-                className="w-8 h-8 rounded-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white flex items-center justify-center transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-4 h-4" />
-              </a>
               <a
                 href="#instagram"
                 onClick={(e) => e.preventDefault()}
